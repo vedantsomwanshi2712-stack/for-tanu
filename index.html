@@ -7,27 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="music-player">
+        <iframe src="https://open.spotify.com/embed/track/2xizAyubechNjgeSgICYfC" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+
     <div class="container">
-        <div id="main-card">
+        <div id="main-card" class="glass-card">
             <h1 id="question">Tanu, will you be my Valentine? ❤️</h1>
+            
+            <div id="timer">
+                <p>Counting down to our day...</p>
+                <div id="countdown"></div>
+            </div>
+
             <div class="buttons">
                 <button id="yesButton" onclick="celebrate()">Yes!</button>
                 <button id="noButton" onmouseover="moveButton()">No</button>
             </div>
         </div>
-        <div id="success-message" class="hidden">
+
+        <div id="success-message" class="hidden glass-card">
             <h1>I will always love you, mine only. 🤍</h1>
             <div class="heart-container">🤍</div>
         </div>
     </div>
 
     <script>
+        // Countdown Logic
+        const targetDate = new Date("Feb 14, 2026 00:00:00").getTime();
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " 
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown").innerHTML = "It's Valentine's Day! ❤️";
+            }
+        }, 1000);
+
         function moveButton() {
             const btn = document.getElementById('noButton');
-            // Ensures the button doesn't go off-screen
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            
             btn.style.position = 'absolute';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
@@ -36,7 +66,7 @@
         function celebrate() {
             document.getElementById('main-card').classList.add('hidden');
             document.getElementById('success-message').classList.remove('hidden');
-            document.body.style.backgroundColor = '#ff4d6d';
+            document.body.style.background = '#ff4d6d';
         }
     </script>
 </body>
