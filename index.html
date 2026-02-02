@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Tanisha</title>
+    <title>For Tanu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div id="main-card">
-            <h1 id="question">Tanisha, will you be my Valentine? ❤️</h1>
+            <h1 id="question">Tanu, will you be my Valentine? ❤️</h1>
             <div class="buttons">
                 <button id="yesButton" onclick="celebrate()">Yes!</button>
                 <button id="noButton" onmouseover="moveButton()">No</button>
             </div>
         </div>
         <div id="success-message" class="hidden">
-            <h1>Yay! Can't wait! 🥰</h1>
-            <p>February 14th is a date!</p>
-            <div class="confetti">✨💖✨</div>
+            <h1>I will always love you, mine only. 🤍</h1>
+            <div class="heart-container">🤍</div>
         </div>
     </div>
 
     <script>
         function moveButton() {
             const btn = document.getElementById('noButton');
+            // Ensures the button doesn't go off-screen
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
             
