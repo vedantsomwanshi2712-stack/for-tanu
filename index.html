@@ -29,7 +29,7 @@
     </div>
 
     <script>
-        // Target Date: Feb 14, 2026
+        // --- Countdown Logic ---
         const targetDate = new Date("Feb 14, 2026 00:00:00").getTime();
 
         const timerInterval = setInterval(function() {
@@ -50,23 +50,29 @@
             }
         }, 1000);
 
-        // Fixed Runaway Button Logic
+        // --- Improved Runaway Button Logic ---
         function moveButton() {
             const btn = document.getElementById('noButton');
             
-            // Calculate random positions
-            // Subtracting 100 to keep it from going off the bottom/right edge
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            // Defines a safe margin so the button doesn't hug the screen edges
+            const margin = 100; 
+            const maxWidth = window.innerWidth - btn.offsetWidth - margin;
+            const maxHeight = window.innerHeight - btn.offsetHeight - margin;
+
+            // Generate random coordinates within the safe "inner" window
+            const x = Math.max(margin, Math.floor(Math.random() * maxWidth));
+            const y = Math.max(margin, Math.floor(Math.random() * maxHeight));
             
-            btn.style.position = 'fixed'; // Overrides layout constraints
+            btn.style.position = 'fixed'; 
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
+        // --- Celebration Logic ---
         function celebrate() {
             document.getElementById('main-card').classList.add('hidden');
             document.getElementById('success-message').classList.remove('hidden');
+            // Change background to a solid romantic red on 'Yes'
             document.body.style.background = "#ff4d6d";
         }
     </script>
