@@ -18,17 +18,18 @@
 
             <div class="buttons">
                 <button id="yesButton" onclick="celebrate()">Yes!</button>
-                <button id="noButton" onmouseover="moveButton()">No</button>
+                <button id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
             </div>
         </div>
 
         <div id="success-message" class="hidden glass-card">
-            <h1>I will always love you, mine only. 🤍</h1>
+            <h1>my fatty 💋🤍</h1>
             <div class="heart-container">🤍</div>
         </div>
     </div>
 
     <script>
+        // Target Date: Feb 14, 2026
         const targetDate = new Date("Feb 14, 2026 00:00:00").getTime();
 
         const timerInterval = setInterval(function() {
@@ -49,11 +50,16 @@
             }
         }, 1000);
 
+        // Fixed Runaway Button Logic
         function moveButton() {
             const btn = document.getElementById('noButton');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.position = 'absolute';
+            
+            // Calculate random positions
+            // Subtracting 100 to keep it from going off the bottom/right edge
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            
+            btn.style.position = 'fixed'; // Overrides layout constraints
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
